@@ -5,8 +5,31 @@ Implementasi sistem antrian pelanggan restoran menggunakan struktur data Single 
 ## Komponen Sistem
 
 1. **Node.java** - Kelas untuk merepresentasikan setiap pelanggan dalam antrian
-2. **RestaurantQueue.java** - Implementasi operasi antrian (push, pop, displayQueue)
+
+   - Menyimpan informasi nama pelanggan, nomor antrian, dan waktu kedatangan
+   - Memiliki pointer ke Node berikutnya
+
+2. **RestaurantQueue.java** - Implementasi operasi antrian
+
+   - Operasi `push()` untuk menambahkan pelanggan baru ke belakang antrian
+   - Operasi `pop()` untuk mengeluarkan pelanggan dari depan antrian
+   - Penomoran antrian otomatis
+   - Perhitungan estimasi waktu tunggu
+   - Pencarian posisi pelanggan dalam antrian
+   - Statistik antrian
+
 3. **RestaurantQueueDemo.java** - Program utama untuk menjalankan simulasi sistem antrian
+   - Demo otomatis yang menunjukkan semua fitur
+   - Demo interaktif dengan menu pilihan (dinonaktifkan secara default)
+
+## Fitur Utama
+
+- **Penomoran Antrian Otomatis**: Setiap pelanggan mendapatkan nomor antrian unik
+- **Visualisasi Antrian**: Menampilkan kondisi antrian secara real-time setelah setiap operasi
+- **Estimasi Waktu Tunggu**: Menghitung perkiraan waktu tunggu untuk setiap pelanggan
+- **Statistik Antrian**: Informasi tentang jumlah pelanggan dan estimasi waktu total
+- **Pencarian Pelanggan**: Mencari posisi pelanggan berdasarkan nomor antrian
+- **Demo Interaktif**: Memungkinkan interaksi dengan sistem melalui menu (opsional)
 
 ## Analisis Pemilihan Struktur Data
 
@@ -64,24 +87,26 @@ Misalkan:
 
 - Nama pelanggan (String): 20 byte per nama
 - Pointer di JVM: 4 byte
+- Timestamp (long): 8 byte
+- Nomor antrian (int): 4 byte
 
 #### Single Linked List:
 
-- Setiap Node: 20 byte (data) + 4 byte (pointer) = 24 byte
-- 5 pelanggan: 5 × 24 byte = 120 byte
+- Setiap Node: 20 byte (nama) + 4 byte (pointer) + 8 byte (timestamp) + 4 byte (nomor) = 36 byte
+- 5 pelanggan: 5 × 36 byte = 180 byte
 
 #### Double Linked List:
 
-- Setiap Node: 20 byte (data) + 4 byte (next) + 4 byte (prev) = 28 byte
-- 5 pelanggan: 5 × 28 byte = 140 byte
+- Setiap Node: 20 byte (nama) + 8 byte (2 pointer) + 8 byte (timestamp) + 4 byte (nomor) = 40 byte
+- 5 pelanggan: 5 × 40 byte = 200 byte
 
 #### Array (fixed size 10):
 
-- Data: 5 × 20 byte = 100 byte
-- Memori tidak terpakai: 5 × 20 byte = 100 byte (jika ukuran array 10)
-- Total: 200 byte
+- Data: 5 × 32 byte (nama + timestamp + nomor) = 160 byte
+- Memori tidak terpakai: 5 × 32 byte = 160 byte (jika ukuran array 10)
+- Total: 320 byte
 
-Dari contoh ini, Single Linked List adalah pilihan yang paling efisien untuk antrian restoran FIFO dengan overhead memori yang minimal dan kompleksitas operasi yang optimal.
+Dari contoh ini, Single Linked List tetap merupakan pilihan yang efisien untuk antrian restoran FIFO dengan overhead memori yang minimal dan kompleksitas operasi yang optimal.
 
 ## Cara Menjalankan Program
 
@@ -102,9 +127,20 @@ java -cp bin RestaurantQueueDemo
 Sistem antrian restoran akan menampilkan:
 
 - Kondisi awal (antrian kosong)
-- Proses penambahan pelanggan ke antrian
-- Proses pelayanan pelanggan (mengeluarkan dari antrian)
-- Penambahan pelanggan baru setelah beberapa pelanggan dilayani
-- Pelayanan semua pelanggan yang tersisa
+- Proses penambahan pelanggan ke antrian dengan nomor antrian
+- Estimasi waktu tunggu untuk setiap pelanggan
+- Statistik antrian (jumlah pelanggan, estimasi waktu total, dll)
+- Pencarian posisi pelanggan berdasarkan nomor antrian
+- Proses pelayanan pelanggan (mengeluarkan dari antrian) dengan waktu tunggu aktual
 - Penanganan kasus saat antrian kosong
 - Analisis singkat mengenai pemilihan struktur data
+
+## Pengembangan Lanjutan
+
+Program ini bisa dikembangkan lebih lanjut dengan:
+
+1. Implementasi antrian prioritas untuk kasus khusus (lansia, ibu hamil, dll)
+2. Integrasi dengan database untuk menyimpan riwayat antrian
+3. Penambahan antarmuka grafis (GUI)
+4. Implementasi teknik multithreading untuk simulasi pelayanan paralel
+5. Fitur reservasi tempat atau pemesanan makanan sebelum dilayani
