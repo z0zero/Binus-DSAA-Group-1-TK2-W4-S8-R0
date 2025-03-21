@@ -2,71 +2,8 @@ import java.util.Scanner;
 
 public class RestaurantQueueDemo {
     public static void main(String[] args) {
-        // Demo otomatis
-        automaticDemo();
-        
-        // Demo interaktif dengan input user
-        // interactiveDemo();
-    }
-    
-    /**
-     * Demo otomatis yang menunjukkan semua fitur sistem antrian restoran
-     */
-    private static void automaticDemo() {
-        // Membuat objek antrian restoran
-        RestaurantQueue queue = new RestaurantQueue();
-        
-        System.out.println("=== DEMONSTRASI SISTEM ANTRIAN RESTORAN ===");
-        
-        // Menampilkan kondisi awal
-        System.out.println("\nKondisi awal:");
-        queue.displayQueue();
-        
-        // Menambahkan beberapa pelanggan ke antrian
-        System.out.println("\nMenambahkan pelanggan ke antrian:");
-        Node budi = queue.push("Budi");
-        Node siti = queue.push("Siti");
-        queue.push("Rudi");
-        queue.push("Dewi");
-        queue.push("Joko");
-        
-        // Menampilkan statistik antrian
-        System.out.println("\nStatistik antrian setelah menambahkan 5 pelanggan:");
-        queue.displayQueueStatistics();
-        
-        // Mencari posisi pelanggan
-        System.out.println("\nMencari posisi pelanggan:");
-        System.out.println("Posisi " + budi + " dalam antrian: " + queue.findPosition(budi.getQueueNumber()));
-        System.out.println("Posisi " + siti + " dalam antrian: " + queue.findPosition(siti.getQueueNumber()));
-        
-        // Melayani pelanggan (mengeluarkan dari antrian)
-        System.out.println("\nMelayani pelanggan:");
-        Node servedCustomer = queue.pop();
-        System.out.println("Pelanggan " + servedCustomer + " selesai dilayani");
-        
-        servedCustomer = queue.pop();
-        System.out.println("Pelanggan " + servedCustomer + " selesai dilayani");
-        
-        // Menambahkan pelanggan lagi
-        System.out.println("\nPelanggan baru datang:");
-        Node tono = queue.push("Tono");
-        
-        // Statistik antrian setelah perubahan
-        System.out.println("\nStatistik antrian setelah perubahan:");
-        queue.displayQueueStatistics();
-        
-        // Melayani semua pelanggan yang tersisa
-        System.out.println("\nMelayani semua pelanggan yang tersisa:");
-        while (!queue.isEmpty()) {
-            queue.pop();
-        }
-        
-        // Mencoba melayani pelanggan pada antrian kosong
-        System.out.println("\nMencoba melayani pelanggan pada antrian kosong:");
-        queue.pop();
-        
-        // Informasi tentang analisis struktur data
-        printAnalysis();
+        // Jalankan demo interaktif
+        interactiveDemo();
     }
     
     /**
@@ -78,6 +15,7 @@ public class RestaurantQueueDemo {
         boolean running = true;
         
         System.out.println("=== SISTEM ANTRIAN RESTORAN INTERAKTIF ===");
+        System.out.println("Implementasi menggunakan Single Linked List");
         
         while (running) {
             System.out.println("\nMENU:");
@@ -87,6 +25,7 @@ public class RestaurantQueueDemo {
             System.out.println("4. Tampilkan statistik antrian");
             System.out.println("5. Cari posisi pelanggan berdasarkan nomor antrian");
             System.out.println("6. Tampilkan analisis struktur data");
+            System.out.println("7. Jalankan demo otomatis");
             System.out.println("0. Keluar");
             
             System.out.print("\nPilihan Anda: ");
@@ -131,6 +70,12 @@ public class RestaurantQueueDemo {
                 case "6":
                     printAnalysis();
                     break;
+                case "7":
+                    System.out.println("\nMenjalankan demo otomatis...");
+                    // Buat antrian baru untuk demo otomatis
+                    automaticDemo();
+                    System.out.println("\nDemo otomatis selesai. Kembali ke menu interaktif.");
+                    break;
                 case "0":
                     running = false;
                     System.out.println("Terima kasih telah menggunakan sistem antrian restoran!");
@@ -141,6 +86,60 @@ public class RestaurantQueueDemo {
         }
         
         scanner.close();
+    }
+    
+    /**
+     * Demo otomatis yang menunjukkan semua fitur sistem antrian restoran
+     */
+    private static void automaticDemo() {
+        // Membuat objek antrian restoran
+        RestaurantQueue queue = new RestaurantQueue();
+        
+        System.out.println("\n=== DEMONSTRASI SISTEM ANTRIAN RESTORAN OTOMATIS ===");
+        
+        // Menampilkan kondisi awal
+        System.out.println("\nKondisi awal:");
+        queue.displayQueue();
+        
+        // Menambahkan beberapa pelanggan ke antrian
+        System.out.println("\nMenambahkan pelanggan ke antrian:");
+        Node budi = queue.push("Budi");
+        Node siti = queue.push("Siti");
+        queue.push("Rudi");
+        queue.push("Dewi");
+        queue.push("Joko");
+        
+        // Menampilkan statistik antrian
+        System.out.println("\nStatistik antrian setelah menambahkan 5 pelanggan:");
+        queue.displayQueueStatistics();
+        
+        // Mencari posisi pelanggan
+        System.out.println("\nMencari posisi pelanggan:");
+        System.out.println("Posisi " + budi + " dalam antrian: " + queue.findPosition(budi.getQueueNumber()));
+        System.out.println("Posisi " + siti + " dalam antrian: " + queue.findPosition(siti.getQueueNumber()));
+        
+        // Melayani pelanggan (mengeluarkan dari antrian)
+        System.out.println("\nMelayani pelanggan:");
+        queue.pop();
+        queue.pop();
+        
+        // Menambahkan pelanggan lagi
+        System.out.println("\nPelanggan baru datang:");
+        queue.push("Tono");
+        
+        // Statistik antrian setelah perubahan
+        System.out.println("\nStatistik antrian setelah perubahan:");
+        queue.displayQueueStatistics();
+        
+        // Melayani semua pelanggan yang tersisa
+        System.out.println("\nMelayani semua pelanggan yang tersisa:");
+        while (!queue.isEmpty()) {
+            queue.pop();
+        }
+        
+        // Mencoba melayani pelanggan pada antrian kosong
+        System.out.println("\nMencoba melayani pelanggan pada antrian kosong:");
+        queue.pop();
     }
     
     /**
@@ -158,5 +157,11 @@ public class RestaurantQueueDemo {
         System.out.println("   - Double Linked List: Memiliki overhead tambahan untuk pointer prev");
         System.out.println("   - Circular Linked List: Lebih kompleks untuk implementasi antrian sederhana");
         System.out.println("   - Array: Tidak efisien untuk operasi pop karena memerlukan pergeseran elemen");
+        
+        System.out.println("\n3. Alokasi Memori:");
+        System.out.println("   - Single Linked List: satu pointer per node");
+        System.out.println("   - Double Linked List: dua pointer per node (prev dan next)");
+        System.out.println("   - Circular Linked List: satu pointer per node (tapi node terakhir menunjuk ke pertama)");
+        System.out.println("   - Array: alokasi blok memori bersebelahan, tidak fleksibel untuk ukuran dinamis");
     }
 } 
