@@ -18,9 +18,17 @@ Implementasi sistem antrian pelanggan restoran menggunakan struktur data Single 
    - Pencarian posisi pelanggan dalam antrian
    - Statistik antrian
 
-3. **RestaurantQueueDemo.java** - Program utama untuk menjalankan simulasi sistem antrian
-   - Demo otomatis yang menunjukkan semua fitur
-   - Demo interaktif dengan menu pilihan (dinonaktifkan secara default)
+3. **RestaurantQueueDemo.java** - Program utama interaktif
+
+   - Demo interaktif dengan menu pilihan
+   - Fleksibilitas dalam menambahkan dan melayani pelanggan
+   - Tampilan statistik dan analisis struktur data
+
+4. **RestaurantQueueAutomaticDemo.java** - Program demo otomatis
+   - Menjalankan simulasi lengkap tanpa interaksi pengguna
+   - Menampilkan semua fitur sistem secara terurut
+   - Analisis struktur data yang lebih detail dan lengkap
+   - Berguna untuk presentasi cepat sistem
 
 ## Fitur Utama
 
@@ -29,7 +37,8 @@ Implementasi sistem antrian pelanggan restoran menggunakan struktur data Single 
 - **Estimasi Waktu Tunggu**: Menghitung perkiraan waktu tunggu untuk setiap pelanggan
 - **Statistik Antrian**: Informasi tentang jumlah pelanggan dan estimasi waktu total
 - **Pencarian Pelanggan**: Mencari posisi pelanggan berdasarkan nomor antrian
-- **Demo Interaktif**: Memungkinkan interaksi dengan sistem melalui menu (opsional)
+- **Demo Interaktif**: Memungkinkan interaksi dengan sistem melalui menu
+- **Demo Otomatis**: Menjalankan simulasi lengkap tanpa interaksi pengguna
 
 ## Analisis Pemilihan Struktur Data
 
@@ -116,10 +125,16 @@ Dari contoh ini, Single Linked List tetap merupakan pilihan yang efisien untuk a
 javac -d bin *.java
 ```
 
-### Eksekusi:
+### Menjalankan Program Interaktif:
 
 ```
 java -cp bin RestaurantQueueDemo
+```
+
+### Menjalankan Demo Otomatis:
+
+```
+java -cp bin RestaurantQueueAutomaticDemo
 ```
 
 ## Output Program

@@ -2,6 +2,11 @@ import java.util.Scanner;
 
 public class RestaurantQueueDemo {
     public static void main(String[] args) {
+        // Pesan pembuka
+        System.out.println("=== SISTEM ANTRIAN RESTORAN ===");
+        System.out.println("Implementasi menggunakan Single Linked List dengan konsep FIFO");
+        System.out.println("Untuk demo otomatis tanpa interaksi, jalankan RestaurantQueueAutomaticDemo\n");
+        
         // Jalankan demo interaktif
         interactiveDemo();
     }
